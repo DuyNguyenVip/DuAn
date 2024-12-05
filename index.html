@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Block Puzzle</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <canvas id="board"></canvas>
-    <div class="side-bar">
-      <div>
-        <h1>Block Puzzle</h1>
-        <p>Score: <span id="score">0</span></p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Puzzle</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@1.32.0/dist/solana-web3.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="board"></canvas>
+      <div class="side-bar">
+        <div>
+          <h1>Block Puzzle</h1>
+          <p>Score: <span id="score">0</span></p>
+        </div>
+        <button class="play-btn" id="play">Play</button>
+        <hr />
+        <button onclick="connectWallet()">Connect Wallet</button>
       </div>
-      <button class="play-btn" id="play">Play</button><hr>
-      <button  onclick="connectWallet()">Conect</button>
     </div>
-  </div>
-  <script src="scripts/app.js"></script>
-</body>
+
+    <script src="scripts/app.js"></script>
+    <script>
+      async function connectWallet() {
+        try {
+          if ("solana" in window && window.solana.isPhantom) {
+            const response = await window.solana.connect();
+            const publicKey = response.publicKey.toString();
+            console.log("Connected with public key:", publicKey);
+            alert(`Wallet connection successful`);
+          } else {
+            // If Phantom is not installed, open a new tab to the installation page
+            alert(
+              "Phantom Wallet is not installed. Opening installation page in a new tab..."
+            );
+            window.open("https://phantom.app/download", "_blank");
+          }
+        } catch (err) {
+          console.error("Failed to connect Phantom Wallet:", err);
+          alert("Failed to connect to Phantom Wallet. Try again!");
+        }
+      }
+    </script>
+  </body>
 </html>

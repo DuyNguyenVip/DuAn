@@ -107,5 +107,42 @@ canvas#board {
     padding: 8px 15px;
   }
 }
+/* General button styles */
+button {
+  background-color: #50fa7b;  /* Light green background */
+  color: #1e1e2e;             /* Dark text color */
+  font-size: 1rem;            /* Font size */
+  padding: 12px 24px;         /* Padding around the text */
+  border: none;               /* No border */
+  border-radius: 8px;         /* Rounded corners */
+  cursor: pointer;           /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transition for background and scale */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Subtle shadow effect */
+}
+
+/* Hover effect */
+button:hover {
+  background-color: #69ff94;  /* Lighter green on hover */
+  transform: scale(1.05);      /* Slightly enlarge button */
+}
+
+/* Active effect */
+button:active {
+  background-color: #33e06f;  /* Darker green when button is pressed */
+  transform: scale(1);         /* Reset scale on click */
+}
+
+/* Style for the disabled state */
+button:disabled {
+  background-color: #999;      /* Grey background when disabled */
+  color: #666;                 /* Lighter text color */
+  cursor: not-allowed;         /* Change cursor to show it's disabled */
+}
+
+/* Optional - Add a focus effect for accessibility */
+button:focus {
+  outline: 2px solid #ff79c6;  /* Pink outline on focus */
+  outline-offset: 2px;         /* Offset the outline a bit */
+}
 
 
